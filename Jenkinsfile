@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     tools {
-        maven 'local_maven'
+        maven 'LocalMaven'
     }
     environment {
         fname = "Ranjit"
@@ -31,17 +31,17 @@ stages{
                         
                         echo "This is made by ${env.fname} ${env.lname}"
                         echo "it's running on ${env.system} and the version is ${env.version}"
-                        deploy adapters: [tomcat7(credentialsId: '58cccd86-7ec3-4a1a-8dfd-8f664aff0392', path: '', url: 'http://13.127.210.164:8282/')], contextPath: null, war: '**/*.war'
-                    }
+                       deploy adapters: [tomcat7(credentialsId: 'abe63ae6-7b40-4683-a9dd-9fc195c3db0f', path: '', url: 'http://13.233.214.80:8282/')], contextPath: null, war: '**/*.war'
+                 }
                 }
 
-                stage ("Deploy to Production"){
+                stage ("Deploy to Stagin2"){
                     steps {
                         echo 'This is just a demo on Production server.'
-                        script{
+                        /*script{
                             props = readProperties file: 'build.cnf'
                         }
-                        echo "Current Version ${props['deploy.version']}"
+                        echo "Current Version ${props['deploy.version']}"*/
                     }
                 }
             }
